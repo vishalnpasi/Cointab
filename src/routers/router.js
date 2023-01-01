@@ -8,19 +8,19 @@ const path = require('path')
 rout.use(body_Parser.urlencoded({extended:true}));
 
 // login...
-rout.get("/login.html", function (req, res) {
+rout.get("/login", function (req, res) {
     res.sendFile(path.join(__dirname, '../views','login.html'));
 });  
-rout.post('/login.html',userController.login)
+rout.post('/login',userController.login)
 
 // signUp
-rout.get("/signup.html", function (req, res) { 
+rout.get("/signup", function (req, res) { 
     res.sendFile(path.join(__dirname ,'../views' , '/signup.html'));
 });  
-rout.post('/signup.html',userController.register)
+rout.post('/signup',userController.register)
 
 // home 
-rout.get('/home.html', function (req, res) {
+rout.get('/home', function (req, res) {
     res.sendFile(path.join(__dirname,'../views','home.html'))
   });
 
