@@ -1,5 +1,5 @@
-const valid = require('../validation/validation')
-const con = require('../connectMySql');
+const valid = require('./validation')
+const con = require('./connectMySql');
 const bcrypt = require('bcrypt');
 
 const register = async function(req,res){
@@ -16,7 +16,7 @@ const register = async function(req,res){
         let emailQuery = 'select * from userTable where email = ?'
         con.query(emailQuery,[email],async function(err,result){
             if(err) return res.status(500).send("<h1> INTERNAL ERROR.....")
-            if(result.length>0) return res.status(409).send("<h1>Email Already Present</h1>")
+            if(result.length>0) return res.status(409).send("<h1> Account is Already Exists </h1>")
 
             if(!valid.isValidPassword(password))
                 return res.status(400).send("<h3>PLZ Enter Valid Password , must contain 1 digit , 1 special char , min 6 and max 16</h3>")
@@ -43,7 +43,7 @@ const login = async function(req,res){
         let user = "select * from userTable where email = ?"
         con.query(user,[email] , async function(err,result){
             if(err) return res.status(500).send("<h1> INTERNAL ERROR.....")
-            if(result.length ==0) return res.status(400).send({status:false,massage:' Email not Found'})
+            if(result.length ==0) return res.status(400).send("<h1> Account isn't Exists </h1>")
                 
             let checkPass = await bcrypt.compare(password , result[0].password)
 

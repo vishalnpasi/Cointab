@@ -2,7 +2,7 @@ const express = require('express')
 const body_Parser = require('body-parser')
 require('dotenv').config()
 const app = express();
-const router = require("./routers/router")
+const router = require("./router")
 
 app.use(body_Parser.json())
 
