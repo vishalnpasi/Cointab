@@ -8,10 +8,10 @@ const path = require('path')
 rout.use(body_Parser.urlencoded({extended:true}));
 
 // login...
-rout.get("/login", function (req, res) {
+rout.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, 'login.html'));
 });  
-rout.post('/login',userController.login)
+rout.post('/',userController.login)
 
 // signUp
 rout.get("/signup", function (req, res) { 

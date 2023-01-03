@@ -6,7 +6,7 @@ const router = require("./router")
 
 app.use(body_Parser.json())
 
-app.use(router)
+app.use('/',router)
 
 let PORT = (process.env.PORT || 3000)
 app.listen(PORT,function(){

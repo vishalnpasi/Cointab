@@ -27,7 +27,7 @@ const register = async function(req,res){
                 if(err) return res.status(500).send("<h1> INTERNAL ERROR.....")   
                 return res.send(`<body style="text-align:center;background: linear-gradient(120deg,#2980b9, #8e44ad);">
                                 <h1>SignUp Successfull</h1>
-                                <form method="get" action="/login">
+                                <form method="get" action="/">
                                 <button>Back To Login</button>
                                 </form></body>`)
             })
@@ -53,13 +53,13 @@ const login = async function(req,res){
 
             let right_attempt = `<body style="text-align:center;background: linear-gradient(120deg,#2980b9, #8e44ad);">
                                 <h1>Welcome To Home Page</h1><h1>${email}</h1>
-                                <form method="get" action="/login">
+                                <form method="get" action="/">
                                     <button>Logout</button>
                                 </form>
                                 </body>`
             let wrong_attempt = `<body style="text-align:center;">
                                 <h1>You Entered Wrong Password...You have Only ${failed_attempt} Attempt</h1>
-                                <form method="get" action="/login"><button>Back</button></form>
+                                <form method="get" action="/"><button>Back</button></form>
                                 </body>`
             // today...
             if(diff<24){
@@ -67,7 +67,7 @@ const login = async function(req,res){
                 return res.status(200)
                             .send(`<body style="text-align:center;">
                                     <h1>You Have Reached Maximum failed Attempt limit Plz try 24 hours later</h1>
-                                    <form method="get" action="/login"><button>Back</button></form>
+                                    <form method="get" action="/"><button>Back</button></form>
                                     </body>`)                
                 if(checkPass){
                     let update = 'update userTable set failed_attempt = 0 where email = ?;'
@@ -102,7 +102,7 @@ const login = async function(req,res){
                         if(err) return res.status(500).send("<h1> INTERNAL ERROR.....")
                         return res.status(400).send(`<body style="text-align:center;">
                                 <h1>You Entered Wrong Password...You have Only 4 Attempt</h1>
-                                <form method="get" action="/login"><button>Back</button></form>
+                                <form method="get" action="/"><button>Back</button></form>
                                 </body>`)
                     })
                 }
